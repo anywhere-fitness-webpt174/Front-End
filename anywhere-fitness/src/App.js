@@ -2,17 +2,38 @@ import React, { useState } from "react";
 import AddClass from "./components/AddClass";
 
 const initialFormValues = {
-  className: "example",
-  classType: "example",
-  startTime: "3:30",
-  duration: "15",
-  intesity: "5",
-  location: "here",
-  maxClassSize: "1 million",
+  className: "",
+  classType: "",
+  startTime: "",
+  duration: "",
+  intesity: "",
+  location: "",
+  maxClassSize: "",
 };
 
 export default function App() {
   const [formValues, setFormValues] = useState(initialFormValues);
+  const [classes, setClasses] = useState({});
 
-  return <AddClass values={formValues}/>;
+  const updateForm = (inputName, inputValue) => {
+    setFormValues({ ...formValues, [inputName]: inputValue });
+  };
+
+  const submitNewClass = () => {
+    const newClass = {
+      className: formValues.className.trim(),
+      classType: formValues.classType.trim(),
+      startTime: formValues.startTime.trim(),
+      duration: formValues.duration,
+      intesity: formValues.intesity,
+      location: formValues.location,
+      maxClassSize: formValues.maxClassSize.trim(),
+    };
+  };
+
+  const getClasses = () => {};
+
+  return (
+    <AddClass values={formValues} submit={submitNewClass} update={updateForm} />
+  );
 }

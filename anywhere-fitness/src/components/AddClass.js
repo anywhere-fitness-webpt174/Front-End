@@ -1,14 +1,22 @@
 import React from "react";
 import styled from "styled-components";
 
-// const StyledAddClass = styled.form`
+// const StyledAddclass = styled.form`
 //     display: flex;
 // `
 
 export default function AddClass(props) {
-  const { values } = props;
+  const { values, submit, update } = props;
 
-  const onChange = (evt) => {};
+  const onSubmit = (evt) => {
+      evt.preventDefault()
+      submit()
+  };
+
+  const onChange = (evt) => {
+      const { name, value } = evt.target;
+      update(name, value)
+  };
 
   return (
     <form>

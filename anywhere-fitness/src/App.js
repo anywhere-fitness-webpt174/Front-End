@@ -1,17 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import AddClass from "./components/AddClass";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          And from nothing...Anywhere Fitness is born!
-        </p>
-      </header>
-    </div>
-  );
+const initialFormValues = {
+  className: "example",
+  classType: "example",
+  startTime: "3:30",
+  duration: "15",
+  intesity: "5",
+  location: "here",
+  maxClassSize: "1 million",
+};
+
+export default function App() {
+  const [formValues, setFormValues] = useState(initialFormValues);
+
+  return <AddClass values={formValues}/>;
 }
-
-export default App;

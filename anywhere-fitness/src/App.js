@@ -13,7 +13,7 @@ const initialFormValues = {
 
 export default function App() {
   const [formValues, setFormValues] = useState(initialFormValues);
-  const [classes, setClasses] = useState({});
+  const [classes, setClasses] = useState([]);
 
   const updateForm = (inputName, inputValue) => {
     setFormValues({ ...formValues, [inputName]: inputValue });
@@ -29,9 +29,11 @@ export default function App() {
       location: formValues.location,
       maxClassSize: formValues.maxClassSize.trim(),
     };
+    setClasses([...classes, newClass])
+    setFormValues(initialFormValues)
   };
 
-  const getClasses = () => {};
+
 
   return (
     <AddClass values={formValues} submit={submitNewClass} update={updateForm} />

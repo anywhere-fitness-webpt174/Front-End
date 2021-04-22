@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+// import styled from "styled-components";
 
 // const StyledAddclass = styled.form`
 //     display: flex;
@@ -19,7 +19,7 @@ export default function AddClass(props) {
   };
 
   return (
-    <form>
+    <form onSubmit={onSubmit}>
       <div>
         <h2>Add a Class</h2>
         <label>
@@ -86,6 +86,9 @@ export default function AddClass(props) {
             onChange={onChange}
           />
         </label>
+        <div>
+            <button>Add Class</button>
+        </div>
       </div>
     </form>
   );

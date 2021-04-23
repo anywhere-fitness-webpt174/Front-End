@@ -1,11 +1,22 @@
 import React from 'react'
+import styled from 'styled-components'
 
-export default function Class() {
+
+const StyledClass = styled.div`
+    h2 {
+        color: red;
+    }
+`
+
+export default function Class(props) {
+    const { details } = props
     return (
-        <div>
+        <StyledClass>
             <h2>
-                
+                {details.className}
             </h2>
-        </div>
+            <p>{details.location}</p>
+            <p>Attendies: {details.maxClassSize}</p>
+        </StyledClass>
     )
 }

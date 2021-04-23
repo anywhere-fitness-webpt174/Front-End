@@ -1,6 +1,6 @@
 import React from 'react'
 
-
+// SignUp component without state, routing, or functionality
 const SignUp = (props) => {
     return (
         <div>

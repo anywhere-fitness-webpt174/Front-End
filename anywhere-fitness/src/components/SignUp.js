@@ -4,6 +4,7 @@ import React from 'react'
 const SignUp = (props) => {
     return (
         <div>
+            <h2>Sign Up</h2>
             <form>
                 <label htmlFor='userName'>
                     Please Enter Your First and Last Name
@@ -46,7 +47,8 @@ const SignUp = (props) => {
                         <option value='student'>Student</option>
                     </select>
                 </label>
-                <submit />
+                <br />
+                <button>Submit</button>
             </form>
         </div>
     )

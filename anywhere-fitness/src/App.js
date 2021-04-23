@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import AddClass from "./components/AddClass";
+import SignUp from './components/SignUp'
 
 const initialFormValues = {
   className: "",
@@ -36,6 +37,7 @@ export default function App() {
 
 
   return (
-    <AddClass values={formValues} submit={submitNewClass} update={updateForm} />
+    <AddClass values={formValues} submit={submitNewClass} update={updateForm} />,
+    <SignUp />
   );
 }

@@ -84,7 +84,7 @@ export default function AddClass(props) {
             />
           </label>
           <div>
-            <button>Add Class</button>
+            <button className='addClassButton'>Add Class</button>
           </div>
         </div>
       </form>

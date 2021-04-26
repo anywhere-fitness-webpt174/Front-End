@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import AddClass from "./components/AddClass";
 import SignUp from './components/SignUp'
 import Login from './components/Login'
+import InstructorProfile from "./components/InstructorProfileComponents/InstructorProfile";
 
 const initialFormValues = {
   className: "",
@@ -42,6 +43,7 @@ export default function App() {
       <AddClass values={formValues} submit={submitNewClass} update={updateForm} />
       <SignUp />
       <Login />
+      <InstructorProfile />
     </div>
       
   );

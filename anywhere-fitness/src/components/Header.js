@@ -13,9 +13,9 @@ export default function Header() {
   const routeToClasses = () => {
     history.push("./class-list");
   };
-  const routeToNewClass = () => {
-    history.push("./add-class");
-  };
+  // const routeToNewClass = () => {
+  //   history.push("./add-class");
+  // };
   const routeHome = () => {
       history.push('./')
   }
@@ -24,7 +24,7 @@ export default function Header() {
     <StyledHeader>
       <h1>This is the Header</h1>
       <button onClick={routeToClasses}>Class List</button>
-      <button onClick={routeToNewClass}>Add Class</button>
+      {/* <button onClick={routeToNewClass}>Add Class</button> */}
       <button onClick={routeHome}>Home</button>
     </StyledHeader>
   );

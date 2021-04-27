@@ -7,7 +7,7 @@ const InstructorProfileClassList = (props) => {
             {InstructorProfileClassData.map(instructorClasses => {
                 const {instructorClass, location, attendees} = instructorClasses
                 return (
-                    <div>
+                    <div className="class">
                         <h5>Class Name: {instructorClass}</h5>
                         <h5>Location: {location}</h5>
                         <h5>Attendees: {attendees}</h5>

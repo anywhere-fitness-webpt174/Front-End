@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import AddClass from "./components/AddClass";
-<<<<<<< HEAD
 import Header from "./components/Header";
 import Class from "./components/Class";
 import { Route, Switch } from "react-router-dom";
-=======
 import SignUp from './components/SignUp'
 import Login from './components/Login'
 import InstructorProfile from "./components/InstructorProfileComponents/InstructorProfile";
->>>>>>> 5ea5e99f762a3682237f643ee7482f9dcd03ba14
+import InstructorEditClass from "./components/InstructorProfileComponents/InstructorEditClass";
+
+
 
 const initialFormValues = {
   className: "",
@@ -68,8 +68,14 @@ export default function App() {
             return <Class details={aClass} />;
           })}
         </Route>
+        <Route exact path="/instructor">
+          <InstructorProfile/>
+        </Route>
+        <Route exact path="/instructor/editclass">
+          <InstructorEditClass/>
+        </Route>
       </Switch>
-      <InstructorProfile />
+      
     </div>
       
   );

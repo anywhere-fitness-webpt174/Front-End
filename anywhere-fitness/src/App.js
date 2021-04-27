@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import AddClass from "./components/AddClass";
+<<<<<<< HEAD
 import Header from "./components/Header";
 import Class from "./components/Class";
 import { Route, Switch } from "react-router-dom";
+=======
+import SignUp from './components/SignUp'
+import Login from './components/Login'
+import InstructorProfile from "./components/InstructorProfileComponents/InstructorProfile";
+>>>>>>> 5ea5e99f762a3682237f643ee7482f9dcd03ba14
 
 const initialFormValues = {
   className: "",
@@ -63,6 +69,8 @@ export default function App() {
           })}
         </Route>
       </Switch>
+      <InstructorProfile />
     </div>
+      
   );
 }

@@ -71,7 +71,7 @@ export default function App() {
         <Route exact path="/instructor">
           <InstructorProfile/>
         </Route>
-        <Route exact path="/instructor/editclass">
+        <Route exact path="/editclass">
           <InstructorEditClass/>
         </Route>
       </Switch>

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import WelcomePage from './components/WelcomePage'
 import AddClass from "./components/AddClass";
-import SignUp from './components/SignUp'
-import Login from './components/Login'
+import SignUp from './components/SignUp';
+import Login from './components/Login';
+import './App.css';
 
 const initialFormValues = {
   className: "",
@@ -43,6 +45,7 @@ export default function App() {
     <div className="App">
       <Switch>
       {/* <AddClass values={formValues} submit={submitNewClass} update={updateForm} /> */}
+      <Route exact path='/' component={WelcomePage} />
       <Route path='/signup' component={SignUp} />
       <Route path='/login' component={Login} />
       <Login />

@@ -4,6 +4,7 @@ import AddClass from "./components/AddClass";
 import SignUp from './components/SignUp'
 import Login from './components/Login'
 import InstructorProfile from "./components/InstructorProfileComponents/InstructorProfile";
+import ClientProfile from "./components/ClientProfile";
 
 const initialFormValues = {
   className: "",
@@ -33,23 +34,25 @@ export default function App() {
       location: formValues.location,
       maxClassSize: formValues.maxClassSize.trim(),
     };
-    setClasses([...classes, newClass])
-    setFormValues(initialFormValues)
+    setClasses([...classes, newClass]);
+    setFormValues(initialFormValues);
   };
-
-
 
   return (
     <Router>
-    <div className="App">
-      <Switch>
-      {/* <AddClass values={formValues} submit={submitNewClass} update={updateForm} /> */}
-      <Route path='/signup' component={SignUp} />
-      <Route path='/login' component={Login} />
-      <Login />
 
-      </Switch>
-    </div>
+      <div className="App">
+        <Switch>
+          {/* <AddClass values={formValues} submit={submitNewClass} update={updateForm} /> */}
+          {/* <Route path="/class-list">
+          {classes.map((aClass) => {
+            return <Class details={aClass} />; */}
+          <Route path="/signup" component={SignUp} />
+          <Route path="/login" component={Login} />
+          <Login />
+        </Switch>
+      </div>
+
     </Router>
   );
 }

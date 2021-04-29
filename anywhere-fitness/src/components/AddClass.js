@@ -9,13 +9,13 @@ export default function AddClass(props) {
   const { values, submit, update } = props;
 
   const onSubmit = (evt) => {
-      evt.preventDefault()
-      submit()
+    evt.preventDefault();
+    submit();
   };
 
   const onChange = (evt) => {
-      const { name, value } = evt.target;
-      update(name, value)
+    const { name, value } = evt.target;
+    update(name, value);
   };
 
   return (
@@ -87,7 +87,7 @@ export default function AddClass(props) {
           />
         </label>
         <div>
-            <button>Add Class</button>
+          <button>Add Class</button>
         </div>
       </div>
     </form>

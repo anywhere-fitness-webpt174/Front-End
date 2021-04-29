@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import AddClass from "./components/AddClass";
 import SignUp from './components/SignUp'
 import Login from './components/Login'
+import InstructorProfile from "./components/InstructorProfileComponents/InstructorProfile";
 
 const initialFormValues = {
   className: "",
@@ -46,6 +47,7 @@ export default function App() {
       <Route path='/signup' component={SignUp} />
       <Route path='/login' component={Login} />
       <Login />
+
       </Switch>
     </div>
     </Router>

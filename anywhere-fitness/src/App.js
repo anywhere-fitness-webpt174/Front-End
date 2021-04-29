@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import AddClass from "./components/AddClass";
-import SignUp from './components/SignUp'
-import Login from './components/Login'
+import SignUp from "./components/SignUp";
+import Login from "./components/Login";
 import InstructorProfile from "./components/InstructorProfileComponents/InstructorProfile";
 import ClientProfile from "./components/ClientProfile";
+import AddPunchCard from "./components/punchCard/AddPunchCard";
 
 const initialFormValues = {
   className: "",
@@ -40,7 +41,6 @@ export default function App() {
 
   return (
     <Router>
-
       <div className="App">
         <Switch>
           {/* <AddClass values={formValues} submit={submitNewClass} update={updateForm} /> */}
@@ -52,7 +52,6 @@ export default function App() {
           <Login />
         </Switch>
       </div>
-
     </Router>
   );
 }

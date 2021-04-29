@@ -1,5 +1,5 @@
 import React from "react";
-import Class from "./Class";
+// import Class from "./Class";
 
 export default function ClientProfile(props) {
   const { update } = props;

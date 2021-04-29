@@ -49,7 +49,6 @@ export default function App() {
           <Route path="/login" component={Login} />
           <Login />
         </Switch>
-        <ClientProfile />
       </div>
     </Router>
   );

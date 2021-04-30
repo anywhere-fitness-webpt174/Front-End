@@ -1,7 +1,11 @@
-import React from 'react'
+import React, {useState} from 'react';
+
 
 // SignUp component without state, routing, or functionality
 const SignUp = (props) => {
+
+    const [signUpFormData, setSignUpFormData] = useState()
+
     return (
         <div>
             <h2>Sign Up</h2>

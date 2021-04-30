@@ -1,14 +1,14 @@
 import React, { useState } from "react";
+import { Route, Switch } from "react-router-dom";
 import AddClass from "./components/AddClass";
 import Header from "./components/Header";
 import Class from "./components/Class";
-import { Route, Switch } from "react-router-dom";
-import SignUp from './components/SignUp'
-import Login from './components/Login'
 import InstructorProfile from "./components/InstructorProfileComponents/InstructorProfile";
 import InstructorEditClass from "./components/InstructorProfileComponents/InstructorEditClass";
-
-
+import SignUp from "./components/SignUp";
+import Login from "./components/Login";
+import ClientProfile from "./components/ClientProfile";
+import AddPunchCard from "./components/punchCard/AddPunchCard";
 
 const initialFormValues = {
   className: "",

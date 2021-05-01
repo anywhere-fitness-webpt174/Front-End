@@ -3,7 +3,7 @@ import React from "react";
 export default function AddPunchCard(props) {
   const { update } = props;
 
-  const onChange = (evt) => {
+  const handleChange = (evt) => {
     const { name, value } = evt.target;
     update(name, value);
   };
@@ -14,19 +14,19 @@ export default function AddPunchCard(props) {
           type="text"
           placeholder="Name of Punch"
           name="nameOfPunch"
-          onChange={onChange}
+          onChange={handleChange}
         />
         <input
           type="text"
           placeholder="price"
           name="price"
-          onChange={onChange}
+          onChange={handleChange}
         />
         <input
           type="text"
           placeholder="Length"
           name="length"
-          onChange={onChange}
+          onChange={handleChange}
         />
       </form>
       <div>

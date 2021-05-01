@@ -2,9 +2,13 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledClass = styled.div`
-  h2 {
+  
     color: red;
-  }
+    border: 2px solid red;
+    border-radius: 20px;
+    box-shadow: 1px -1px 1px 1px rgb(0, 255, 179);
+    width: 50%;
+    margin: 1% auto;
 `;
 
 export default function Class(props) {

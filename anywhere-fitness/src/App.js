@@ -9,6 +9,11 @@ import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 import ClientProfile from "./components/ClientProfile";
 import AddPunchCard from "./components/punchCard/AddPunchCard";
+import { PrivateRoute } from "./components/PrivateRoute";
+import Classes from "./components/Classes";
+import UserProfile from "./components/UserProfile";
+
+
 
 const initialFormValues = {
   className: "",
@@ -28,6 +33,7 @@ const classExample = {
   intesity: "5",
   location: "miami",
   maxClassSize: "30",
+  class_id: "10",
 };
 
 export default function App() {
@@ -56,27 +62,31 @@ export default function App() {
     <div>
       <Header />
       <Switch>
-        <Route path="/add-class">
-          <AddClass
-            values={formValues}
-            submit={submitNewClass}
-            update={updateForm}
-          />
-        </Route>
-        <Route path="/class-list">
-          {classes.map((aClass) => {
-            return <Class details={aClass} />;
-          })}
-        </Route>
-        <Route exact path="/instructor">
-          <InstructorProfile/>
-        </Route>
+        <Route path="/login" component={Login} />
+
+        <Route path="/signup" component = {SignUp}/>
+        
+        <PrivateRoute
+          path="/add-class"
+          component={AddClass}
+          values={formValues}
+          submit={submitNewClass}
+          update={updateForm}
+        />
+        <PrivateRoute
+         path="/class-list" 
+         component={Classes}
+         classes ={classes}
+         />
+        
+
+        <PrivateRoute exact path="/:user" component={UserProfile}/>
+          
+       
         <Route exact path="/editclass">
-          <InstructorEditClass/>
+          <InstructorEditClass />
         </Route>
       </Switch>
-      
     </div>
-      
   );
 }

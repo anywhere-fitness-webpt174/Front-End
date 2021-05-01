@@ -140,3 +140,7 @@ button {
   width: 100px;
   border-radius: 10px;
 }
+
+div > form {
+  width: 100%;
+}

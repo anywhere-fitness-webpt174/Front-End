@@ -1,10 +1,19 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import AddClass from "./components/AddClass";
-import SignUp from './components/SignUp'
-import Login from './components/Login'
+import Header from "./components/Header";
+import Class from "./components/Class";
 import InstructorProfile from "./components/InstructorProfileComponents/InstructorProfile";
+import InstructorEditClass from "./components/InstructorProfileComponents/InstructorEditClass";
+import SignUp from "./components/SignUp";
+import Login from "./components/Login";
 import ClientProfile from "./components/ClientProfile";
+import AddPunchCard from "./components/punchCard/AddPunchCard";
+import { PrivateRoute } from "./components/PrivateRoute";
+import Classes from "./components/Classes";
+import UserProfile from "./components/UserProfile";
+
+
 
 const initialFormValues = {
   className: "",
@@ -16,9 +25,20 @@ const initialFormValues = {
   maxClassSize: "",
 };
 
+const classExample = {
+  className: "Dance Class",
+  classType: "Dancing",
+  startTime: "3:30pm",
+  duration: "30",
+  intesity: "5",
+  location: "miami",
+  maxClassSize: "30",
+  class_id: "10",
+};
+
 export default function App() {
   const [formValues, setFormValues] = useState(initialFormValues);
-  const [classes, setClasses] = useState([]);
+  const [classes, setClasses] = useState([classExample]);
 
   const updateForm = (inputName, inputValue) => {
     setFormValues({ ...formValues, [inputName]: inputValue });
@@ -39,20 +59,34 @@ export default function App() {
   };
 
   return (
-    <Router>
+    <div>
+      <Header />
+      <Switch>
+        <Route path="/login" component={Login} />
 
-      <div className="App">
-        <Switch>
-          {/* <AddClass values={formValues} submit={submitNewClass} update={updateForm} /> */}
-          {/* <Route path="/class-list">
-          {classes.map((aClass) => {
-            return <Class details={aClass} />; */}
-          <Route path="/signup" component={SignUp} />
-          <Route path="/login" component={Login} />
-          <Login />
-        </Switch>
-      </div>
+        <Route path="/signup" component = {SignUp}/>
+        
+        <PrivateRoute
+          path="/add-class"
+          component={AddClass}
+          values={formValues}
+          submit={submitNewClass}
+          update={updateForm}
+        />
+        <PrivateRoute
+         path="/class-list" 
+         component={Classes}
+         classes ={classes}
+         />
+        
 
-    </Router>
+        <PrivateRoute exact path="/:user" component={UserProfile}/>
+          
+       
+        <Route exact path="/editclass">
+          <InstructorEditClass />
+        </Route>
+      </Switch>
+    </div>
   );
 }

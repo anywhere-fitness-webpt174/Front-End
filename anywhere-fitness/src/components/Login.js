@@ -54,9 +54,7 @@ const Login = (props) => {
       .then((res) => {
         console.log(res)
         localStorage.setItem("token",res.data.token)
-        if(res.data.role == "Instructor") {
-          props.history.push(`${res.data.user_id}`)
-        }
+        props.history.push(`${res.data.user_id}`)
       })
       .catch((err) => console.error(err));
   };

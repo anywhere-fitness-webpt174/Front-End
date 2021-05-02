@@ -122,8 +122,8 @@ const SignUp = (props) => {
             onChange={handleChange}
           >
             <option value="">- Choose 1 of the following -</option>
-            <option value="Instructor">Instructor</option>
-            <option value="Client">Customer</option>
+            <option value="1">Instructor</option>
+            <option value="2">Customer</option>
           </select>
         </label>
         <br />

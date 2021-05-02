@@ -1,7 +1,7 @@
 import React from "react";
 // import Class from "./Class";
 
-export default function ClientProfile(props) {
+export default function ClientProfile1(props) {
   const { update } = props;
 
   const onChange = (evt) => {

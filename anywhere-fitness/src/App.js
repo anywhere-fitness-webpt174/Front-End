@@ -7,13 +7,13 @@ import InstructorProfile from "./components/InstructorProfileComponents/Instruct
 import InstructorEditClass from "./components/InstructorProfileComponents/InstructorEditClass";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
-import ClientProfile from "./components/ClientProfile";
 import AddPunchCard from "./components/punchCard/AddPunchCard";
 import { PrivateRoute } from "./components/PrivateRoute";
 import Classes from "./components/Classes";
 import UserProfile from "./components/UserProfile";
+import ClientProfile1 from "./components/ClientProfile1";
 
-
+import ClientProfile from "./components/ClientProfile.jsx";
 
 const initialFormValues = {
   className: "",
@@ -64,8 +64,8 @@ export default function App() {
       <Switch>
         <Route path="/login" component={Login} />
 
-        <Route path="/signup" component = {SignUp}/>
-        
+        <Route path="/signup" component={SignUp} />
+
         <PrivateRoute
           path="/add-class"
           component={AddClass}
@@ -74,18 +74,13 @@ export default function App() {
           update={updateForm}
         />
         <PrivateRoute
-         path="/class-list" 
-         component={Classes}
-         classes ={classes}
-         />
-        
+          path="/class-list"
+          component={Classes}
+          classes={classes}
+        />
 
-        <PrivateRoute exact path="/:user" component={UserProfile}/>
-          
-       
-        <Route exact path="/editclass">
-          <InstructorEditClass />
-        </Route>
+        <PrivateRoute exact path="/:user" component={UserProfile} />
+
       </Switch>
     </div>
   );

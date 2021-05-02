@@ -14,6 +14,7 @@ import UserProfile from "./components/UserProfile";
 import ClientProfile1 from "./components/ClientProfile1";
 
 import ClientProfile from "./components/ClientProfile.jsx";
+import { connect } from "react-redux";
 
 const initialFormValues = {
   className: "",
@@ -80,8 +81,11 @@ export default function App() {
         />
 
         <PrivateRoute exact path="/:user" component={UserProfile} />
-
       </Switch>
     </div>
   );
 }
+
+
+
+

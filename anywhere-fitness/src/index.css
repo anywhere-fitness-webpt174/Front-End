@@ -32,9 +32,10 @@ header {
 .instructor{
   display: flex;
   flex-direction: column;
-  width: 70%;
   margin: 1% auto;
 }
+
+
 
 .profile-img{
   width: 20%;
@@ -43,15 +44,43 @@ header {
 }
 
 .instructor-top {
-  border: 2px solid pink;
-  background-color: rgb(176, 206, 207);
-  border-radius: 20px;
+  width: 90%;
+  margin: 0% auto;
 }
 
 .instructor-top h1, img, h3, button {
   margin: 1% 1%;
   
 }
+
+.instructor-top img {
+  width: 30%;
+  border-radius: 50%;
+}
+
+.instructor-top .card {
+  background-color: lightgray;
+}
+
+.instructor-bottom > div{
+  width: 90%;
+  margin: 1% auto;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: rgb(115 186 236 / 5%);
+  border-radius: 10px;
+}
+
+.instructor-bottom .btn-group {
+  margin-top: 5px;
+}
+
+.instructor-bottom .card {
+  margin: 1% auto;
+  width: 40%;
+  height: auto;
+}
+
 
 .class-edit{
   display:flex;
@@ -144,3 +173,15 @@ button {
 div > form {
   width: 100%;
 }
+
+.btn-group > .btn {
+  margin: 1% 10%;
+}
+
+.card {
+  margin: 1% auto;
+}
+.card-img-top {
+ margin: 0 auto;
+}
+

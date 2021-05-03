@@ -55,8 +55,9 @@ const SignUp = (props) => {
         registerData
       )
       .then((res) => {
+        console.log(res);
         localStorage.setItem("token", res.data.token);
-        props.history.push(`${res.data.user_id}`);
+        props.history.push(`/${res.data.data.user_id}`);
       })
       .catch((err) => {
         console.error(err.message);
@@ -122,8 +123,8 @@ const SignUp = (props) => {
             onChange={handleChange}
           >
             <option value="">- Choose 1 of the following -</option>
-            <option value="1">Instructor</option>
-            <option value="2">Customer</option>
+            <option value="2">Instructor</option>
+            <option value="1">Customer</option>
           </select>
         </label>
         <br />

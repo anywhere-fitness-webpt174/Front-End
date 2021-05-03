@@ -7,51 +7,38 @@ import Typography from "@material-ui/core/Typography";
 import { Link as RouterLink, useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 
-
-
-
-const useStyles = makeStyles(theme => ({
-    "@global": {
-      body: {
-        backgroundColor: theme.palette.common.white
-      }
+const useStyles = makeStyles((theme) => ({
+  "@global": {
+    body: {
+      backgroundColor: theme.palette.common.white,
     },
-    appBar: {
-      borderBottom: `2px solid black`,
-      backgroundImage: `url(https://img4.goodfon.com/wallpaper/nbig/6/ef/dumbells-gym-fitness-1.jpg)`,
-      backgroundRepeat: `no-repeat`,
-      backgroundSize: `cover`,
-      backgroundPosition: `left center`,
-      height: `250px`
-    },
-    toolbarTitle: {
-      flexGrow: 1,
-      fontWeight: 900,
-      color: "#333453"
-    },
-    link: {
-      margin: theme.spacing(12, 1.5)
-    }
-  }));
-
-
-  
+  },
+  appBar: {
+    borderBottom: `2px solid black`,
+    backgroundImage: `url(https://img4.goodfon.com/wallpaper/nbig/6/ef/dumbells-gym-fitness-1.jpg)`,
+    backgroundRepeat: `no-repeat`,
+    backgroundSize: `cover`,
+    backgroundPosition: `left center`,
+    height: `250px`,
+  },
+  toolbarTitle: {
+    flexGrow: 1,
+    fontWeight: 900,
+    color: "#333453",
+  },
+  link: {
+    margin: theme.spacing(12, 1.5),
+  },
+}));
 
 export default function Nav(props) {
   const classes = useStyles();
-  const {push} = useHistory();
-
-  
-//   const logout = e => {
-//     e.preventDefault();
-
-//     axiosWithAuth().get(``)
-//       .then(res => {
-//         console.log(res.data);
-//         push("/login");
-//       })
-//       .catch(err => console.error("Could not Logout: ", err.message));
-//   }
+  const token = localStorage.getItem("token");
+  const history = useHistory();
+  const logOut = (e) => {
+    localStorage.clear()
+    history.go(0);
+  }
 
   return (
     <React.Fragment>
@@ -65,31 +52,43 @@ export default function Nav(props) {
             className={classes.toolbarTitle}
           ></Typography>
           <nav className="nav">
-              <RouterLink style={{ textDecoration: "none" }} to="/signup">
-                <Button
-                  href="#"
-                  color="primary"
-                  variant="contained"
-                  className={classes.link}
-                >
-                  Sign Up
-                </Button>
-              </RouterLink>
-              <RouterLink style={{ textDecoration: "none" }} to="/login">
-                <Button
-                  href="#"
-                  color="primary"
-                  variant="contained"
-                  className={classes.link}
-                >
-                  Login
-                </Button>
-              {/* <RouterLink style={{ textDecoration: "none"}} to="/login" >
-                <Button onClick={logout} href="#" color="primary" variant="contained" className={classes.link}>
-                  Logout
-                </Button>
-              </RouterLink> */}
-              </RouterLink> 
+            {token ? (
+              <div>
+                <RouterLink style={{ textDecoration: "none" }} to="/" onClick={logOut}>
+                  <Button
+                    href="#"
+                    color="primary"
+                    variant="contained"
+                    className={classes.link}
+                  >
+                    Log Out
+                  </Button>
+                </RouterLink>
+              </div>
+            ) : (
+              <div>
+                <RouterLink style={{ textDecoration: "none" }} to="/signup">
+                  <Button
+                    href="#"
+                    color="primary"
+                    variant="contained"
+                    className={classes.link}
+                  >
+                    Sign Up
+                  </Button>
+                </RouterLink>
+                <RouterLink style={{ textDecoration: "none" }} to="/login">
+                  <Button
+                    href="#"
+                    color="primary"
+                    variant="contained"
+                    className={classes.link}
+                  >
+                    Login
+                  </Button>
+                </RouterLink>
+              </div>
+            )}
           </nav>
         </Toolbar>
       </AppBar>

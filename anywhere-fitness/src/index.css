@@ -203,7 +203,6 @@ div > form {
 }
 
 #root>div>div {
-  background-color: rgba(111, 176, 216, 0.4);
   width:90%;
   margin: 1% auto;
   border-radius: 0.25rem;

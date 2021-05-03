@@ -11,6 +11,7 @@ import {
   CardTitle,
   CardSubtitle,
 } from "reactstrap";
+import { axiosWithAuth } from "../../utils/axiosWithAuth";
 
 const InstructorProfileClassList = (props) => {
   const history = useHistory();
@@ -27,6 +28,18 @@ const InstructorProfileClassList = (props) => {
     history.push(`/${url.params.user}/editclass/${e.target.value}`);
   };
 
+  const deleteClass = (e) => {
+    e.preventDefault();
+    axiosWithAuth().
+    delete(`/classes/${e.target.value}`)
+    .then(res => {
+      console.log(res)
+      //history.go(0);
+    })
+    .catch(err => {
+      console.error(err);
+    })
+  }
   return (
     <div>
       {instructor_classes.map((aClass) => {
@@ -55,7 +68,7 @@ const InstructorProfileClassList = (props) => {
               <CardSubtitle>{class_duration}</CardSubtitle>
               <CardText>{class_description} </CardText>
               <ButtonGroup>
-                <Button color="danger" size="sm" value={class_id}>
+                <Button color="danger" size="sm" value={class_id} onClick={deleteClass}>
                   X
                 </Button>
                 <Button color="warning" size="sm" onClick={routeToEditClass} value={class_id}>

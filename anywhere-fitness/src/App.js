@@ -9,6 +9,8 @@ import { PrivateRoute } from "./components/PrivateRoute";
 import Classes from "./components/Classes";
 import UserProfile from "./components/UserProfile";
 import InstructorEditClass from "./components/InstructorProfileComponents/InstructorEditClass";
+import Nav from "./components/Nav";
+import { connect } from "react-redux";
 
 const initialFormValues = {
   class_name: "",
@@ -31,10 +33,10 @@ const classExample = {
   class_id: "10",
 };
 
-export default function App() {
+function App(props) {
   return (
     <div>
-      <Header />
+      <Nav/>
       <Switch>
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
@@ -45,7 +47,16 @@ export default function App() {
         />
         <PrivateRoute path="/class-list" />
         <PrivateRoute exact path="/:user" component={UserProfile} />
+        <Route path="/" component={Login} />
       </Switch>
     </div>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  }
+}
+
+export default connect(mapStateToProps,{})(App);

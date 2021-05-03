@@ -37,7 +37,7 @@ export default function Nav(props) {
   const history = useHistory();
   const logOut = (e) => {
     localStorage.clear()
-    history.go(0);
+    // history.push(`/`);
   }
 
   return (

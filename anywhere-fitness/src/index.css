@@ -1,5 +1,7 @@
 
-
+html, html>body, body>#root, #root>div, #root>div>div {
+  height: 100%;
+}
 
 body {
   margin: 0;
@@ -84,15 +86,14 @@ header {
 
 .class-edit{
   display:flex;
-  border: 2px solid black;
   width: 90%;
   margin: 1% auto;
-  background-color:rgb(207, 233, 245)
+  
 }
 
 .class-details, .punch-passes{
   margin: 1% auto;
-  border: 2px solid black;
+  /* border: 2px solid black; */
   width: 45%;
 }
 
@@ -102,6 +103,8 @@ header {
   width: 70%;
   border-radius: 10px;
   box-shadow: 1px 2px rgb(118, 118, 238);
+  background-color: #268275;
+  color: white;
 }
 
 .pass > h2, .pass > h4 {
@@ -120,7 +123,7 @@ form {
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
-  border: 2px solid black;
+  /* border: 2px solid black; */
   margin: 0 auto;
 }
 
@@ -131,32 +134,44 @@ label {
 
 
 
-form > input {
-  background-color: #73bae9;
+form > input, .form-inputs>.add-class input, .form-group>.form-control {
+  background-color: #ddeffa;
   border: 0;
   padding: 10px 0 10px 10px;
   font-size: 1rem;
   width: 70%;
   outline: 0;
-  color: white;
-  border-bottom: 1px solid #e64944;
+  color: #7a7676;
+  border-bottom: 1px solid #2366f7;
   margin: 1% auto;
   border-radius: 10px 0 10px 0;
 }
 
+.edit-class>.form-group input, .edit-class>.form-group select, .edit-class>.form-group textarea {
+  width: 100%;
+}
+
+.form-inputs>div, .form-inputs>h2, .class-details>div, .add-punch>div div, .add-punch>h4 {
+  width: 70%;
+  margin-left: 38%;
+}
+
+.add-punch>h4 {
+ margin-top:4%;
+}
+
 form > button, .punch-passes > button {
-  background-color: #50b1df;
-  border: 1px solid #2c2424;
+  background-color: #007bff;
+  border: 1px solid #007bff;
   color: white;
   font-size: 16px;
   padding: 6px 14px;
-  width: 100px;
-  border-radius: 10px;
+  border-radius: 0.2rem;
   margin: 2% auto ;
 }
 
 input::placeholder {
-  color: #e64944;
+  color: #7a7676;
   opacity: 1;
 }
 
@@ -178,6 +193,8 @@ div > form {
   margin: 1% 10%;
 }
 
+
+
 .card {
   margin: 1% auto;
 }
@@ -185,3 +202,9 @@ div > form {
  margin: 0 auto;
 }
 
+#root>div>div {
+  background-color: rgba(111, 176, 216, 0.4);
+  width:90%;
+  margin: 1% auto;
+  border-radius: 0.25rem;
+}

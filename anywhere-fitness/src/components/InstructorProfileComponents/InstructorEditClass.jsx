@@ -1,46 +1,28 @@
 import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import { fetchClasses, updateClasses } from "../../actions";
+import { Button, FormGroup, Label, Input, Form, CardTitle } from "reactstrap";
+import AddPunchCard from "../punchCard/AddPunchCard";
+import { axiosWithAuth } from "../../utils/axiosWithAuth";
 
-const mockClassData = {
-  className: "Pro Pilates",
-  classType: "Pilates",
-  time: "10:00 am",
-  duration: "60",
-  level: "3",
-  location: "San Diego",
-  bookedAttendees: "20",
-  maxAttendees: "20",
-};
+const InstructorEditClass = (props) => {
+  const selectedClass = props.classes.find(
+    (aClass) => props.computedMatch.params.classid == aClass.class_id
+  );
 
-const mockPunchPass = [
-    {
-        passName:"Single Pass",
-        price: "15",
-        type: "Punch Card"
-    },
-    {
-        passName:"1 month unlimited",
-        price: "60",
-        type: "Unlimited"
-    }
-]
-
-const InstructorEditClass = () => {
-  const [classEditForm, setClassEditForm] = useState({
-    className: "",
-    classType: "",
-    time: "",
-    duration: "",
-    level: "",
-    location: "",
-    bookedAttendees: "",
-    maxAttendees: "",
-  });
+  const [classEditForm, setClassEditForm] = useState(selectedClass);
 
   const [passData, setPassData] = useState([]);
- 
+
+  const [isAddingPass, setIsAddingPass] = useState(false);
+
+  const {classid} = props.computedMatch.params;
+
+
   useEffect(() => {
-    setClassEditForm(mockClassData);
-    setPassData(mockPunchPass)
+    //console.log(classEditForm);
+    console.log(props.fetchClasses());
+    setPassData(props.passes);
   }, []);
 
   const changeHandle = (e) => {
@@ -52,109 +34,144 @@ const InstructorEditClass = () => {
     setClassEditForm(newClassEditForm);
   };
 
-  const submitHandle = (e) => {
+  const submitNewClass = (e) => {
     e.preventDefault();
-    //   axios.put('url/{class.id}', classEditForm )
-    //   .then(res => {
-    //     setClassEditForm(res.data)
-    //   })
-    //   .catch(err => console.log(err.response.message))
-    
-    //mock the update action, delete once the actual axios call is working
-    setClassEditForm({
-      className: "New Pilates",
-      classType: "Pilates",
-      time: "10:00 am",
-      duration: "70",
-      level: "3",
-      location: "San Diego",
-      bookedAttendees: "22",
-      maxAttendees: "25",
-    });
+    const newClassDataArr = [classEditForm]
+    console.log(newClassDataArr);
+    const updatedClassArr = props.classes.map(aClass => {
+      return newClassDataArr.find(theClass => theClass.class_id === aClass.class_id || aClass)
+    })
+   
+    props.updateClasses(updatedClassArr);
+  };
+
+  const addPunch = (e) => {
+    e.preventDefault();
+    setIsAddingPass(true);
+  };
+
+  const addNewPunch = (newPass) => {
+    const newPassData = [...passData, newPass];
+    setPassData(newPassData);
   };
 
   return (
-    <div className="class-edit">
-       
-      <section className="class-details">
-        <h2>Class Details</h2>
-        <form action="" className="form" onSubmit={submitHandle}>
-          <label htmlFor="">Class Name</label>
-          <input
-            type="text"
-            name="className"
-            value={classEditForm.className}
-            onChange={changeHandle}
-          />
-          <label htmlFor="">Class Type</label>
-          <input
-            type="text"
-            name="classType"
-            value={classEditForm.classType}
-            onChange={changeHandle}
-          />
-          <label htmlFor="">Time</label>
-          <input
-            type="text"
-            name="time"
-            value={classEditForm.time}
-            onChange={changeHandle}
-          />
-          <label htmlFor="">{`Duration(mins)`}</label>
-          <input
-            type="text"
-            name="duration"
-            value={classEditForm.duration}
-            onChange={changeHandle}
-          />
-          <label htmlFor="">Level</label>
-          <input
-            type="text"
-            name="level"
-            value={classEditForm.level}
-            onChange={changeHandle}
-          />
-          <label htmlFor="">Location</label>
-          <input
-            type="text"
-            name="location"
-            value={classEditForm.location}
-            onChange={changeHandle}
-          />
-          <label htmlFor="">Booked Attendees</label>
-          <input
-            type="text"
-            name="bookedAttendees"
-            value={classEditForm.bookedAttendees}
-            onChange={changeHandle}
-          />
-          <label htmlFor="">Max Attendees</label>
-          <input
-            type="text"
-            name="maxAttendees"
-            value={classEditForm.maxAttendees}
-            onChange={changeHandle}
-          />
-          <button> Save From</button>
-        </form>
-      </section>
+    <div>
+      <div className="class-edit">
+        <section className="class-details">
+          <h2>Class Details</h2>
+          <Form className="edit-class">
+            <FormGroup>
+              <Input
+                type="text"
+                name="class_name"
+                placeholder="Type class name here"
+                value={classEditForm.class_name}
+                onChange={changeHandle}
+              />
+              <Input
+                type="text"
+                name="class_type"
+                placeholder="Enter Class Type"
+                value={classEditForm.class_type}
+                onChange={changeHandle}
+              />
 
-      <section className="punch-passes">
-         
-         <h2>Passes</h2>
-        {passData.map(pass => {
+              <Input
+                type="text"
+                name="class_start"
+                placeholder="Example date: 2021/01/01 12:00:00"
+                value={classEditForm.class_start}
+                onChange={changeHandle}
+              />
+              <Input
+                type="select"
+                name="class_duration"
+                value={classEditForm.class_duration}
+                onChange={changeHandle}
+              >
+                <option value="">--Class Duration--</option>
+                <option value="15">15 Minutes</option>
+                <option value="30">30 Minutes</option>
+                <option value="45">45 Minutes</option>
+                <option value="60">60 Minutes</option>
+              </Input>
+
+              <Input
+                type="select"
+                name="class_intensity"
+                value={classEditForm.class_intensity}
+                onChange={changeHandle}
+              >
+                <option value="">--Class Intesity--</option>
+                <option value="1">1 (least intense)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (most intense)</option>
+              </Input>
+
+              <Input
+                type="textarea"
+                name="class_description"
+                value={classEditForm.class_description}
+                onChange={changeHandle}
+                placeholder="Enter Description here"
+              />
+            </FormGroup>
+          </Form>
+           <div>
+              <Button color="primary" size="sm" onClick={submitNewClass}>
+                Save Changes
+              </Button>
+            </div>
+        </section>
+
+        <section className="punch-passes">
+          <h2>Passes</h2>
+          {passData.map((pass) => {
             return (
-                <div className = "pass">
-                    <h3>{pass.passName}</h3>
-                    <h4>Price: ${pass.price}</h4>
-                    <h4>Type: ${pass.type}</h4>
-                </div>
-            )
-        })}
-        <button className="button"> Add Pass</button>
-      </section>
+              <div className="pass">
+                <h5>{pass.pass_name}</h5>
+                <h5>Price: ${pass.pass_price}</h5>
+                <h5>Type: ${pass.pass_type}</h5>
+              </div>
+            );
+          })}
+
+          <Button
+            color="primary"
+            size="sm"
+            className="button"
+            onClick={addPunch}
+          >
+            Add Pass
+          </Button>
+        </section>
+      </div>
+      {isAddingPass ? (
+        <div className="add-punch">
+          <h4>Add New Punch Card below</h4>
+          <AddPunchCard
+            addNewPunch={addNewPunch}
+            setIsAddingPass={setIsAddingPass}
+          />
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 };
 
-export default InstructorEditClass;
+const mapStateToProps = (state) => {
+  return {
+    classes: state.classes,
+    user: state.user,
+    isFetching: state.isFetching,
+    error: state.error,
+    passes: state.passes,
+  };
+};
+
+export default connect(mapStateToProps, { fetchClasses, updateClasses  })(InstructorEditClass);

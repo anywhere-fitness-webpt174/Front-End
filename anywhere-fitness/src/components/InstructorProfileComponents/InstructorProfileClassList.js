@@ -1,6 +1,6 @@
 import React from "react";
 import InstructorProfileClassData from "./InstructorProfileClassData";
-import { useHistory } from "react-router-dom";
+import { useHistory, useRouteMatch } from "react-router-dom";
 import {
   Button,
   ButtonGroup,
@@ -15,18 +15,34 @@ import {
 const InstructorProfileClassList = (props) => {
   const history = useHistory();
 
+  const url = useRouteMatch()
+
+  const instructor_classes = props.classes.filter(
+    (aClass) => aClass.class_instructor === props.userName
+  );
+
   const routeToEditClass = (e) => {
     e.preventDefault();
-    history.push("./editclass");
+    console.log(url);
+    history.push(`/${url.params.user}/editclass/${e.target.value}`);
   };
 
   return (
     <div>
-      {props.classes.map((aClass) => {
-        const { class_name, class_type, class_description, class_duration } = aClass;
+      {instructor_classes.map((aClass) => {
+        const {
+          class_name,
+          class_type,
+          class_description,
+          class_duration,
+          class_intensity,
+          class_id,
+        } = aClass;
         return (
-          <Card>
-            <CardTitle>{class_type} class</CardTitle>
+          <Card key={class_id}>
+            <CardTitle>
+              {class_type} class - {class_intensity} Level
+            </CardTitle>
             <CardImg
               top
               width="80%"
@@ -39,26 +55,14 @@ const InstructorProfileClassList = (props) => {
               <CardSubtitle>{class_duration}</CardSubtitle>
               <CardText>{class_description} </CardText>
               <ButtonGroup>
-                <Button color="danger" size="sm">
+                <Button color="danger" size="sm" value={class_id}>
                   X
                 </Button>
-                <Button color="warning" size="sm" onClick={routeToEditClass}>
-                &#9998;
+                <Button color="warning" size="sm" onClick={routeToEditClass} value={class_id}>
+                  &#9998;
                 </Button>
               </ButtonGroup>
             </CardBody>
-
-            {/* <div className="class">
-             
-             
-
-            <h5>Class Name: {class_name}</h5>
-            <h5>Type: {class_type}</h5>
-             <ButtonGroup>
-                <Button color="danger" size="sm" >Delete</Button>{"    "}
-                <Button color="warning" size="sm" onClick={routeToEditClass}>Edit</Button>
-             </ButtonGroup>
-          </div> */}
           </Card>
         );
       })}

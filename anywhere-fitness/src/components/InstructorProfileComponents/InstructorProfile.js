@@ -1,6 +1,6 @@
 import React from "react";
 import InstructorProfileClassList from "./InstructorProfileClassList";
-import { useHistory } from "react-router-dom";
+import { Route, Switch, useHistory } from "react-router-dom";
 import {
   Button,
   ButtonGroup,
@@ -12,44 +12,50 @@ import {
   CardSubtitle,
   CardHeader,
 } from "reactstrap";
+import AddClass from "../AddClass";
+import { PrivateRoute } from "../PrivateRoute";
+import InstructorEditClass from "./InstructorEditClass";
 
 const InstructorProfile = (props) => {
   const history = useHistory();
+  const { user_name, role, user_id } = props.user;
 
   const routeToAddClass = (e) => {
     e.preventDefault();
-    history.push("./add-class");
+    history.push(`/${user_id}/addclass`);
   };
-
-  const { user_name, role } = props.user;
-
   return (
-    <div className="instructor">
-      <section className="instructor-top">
-        <Card>
-          <CardHeader>Welcome {user_name}</CardHeader>
-          <CardImg
-            top
-            width="80%"
-            src="https://i.pravatar.cc/300"
-            alt="Card image cap"
-          />
-          <CardBody>
-            <CardSubtitle>Role: {role}</CardSubtitle>
-            <CardText>Location: Los Angelos, CA</CardText>
-            <Button color="primary" onClick={routeToAddClass}>
-              Add Class
-            </Button>
-          </CardBody>
-        </Card>
-        {/* <img src="https://i.pravatar.cc/300" className="profile-img" />
-        <h3>Name: {props.user.user_name} </h3>
-        <button onClick={routeToClass}>Add Class</button> */}
-      </section>
-      <section className="instructor-bottom">
-        <InstructorProfileClassList classes={props.classes} />
-      </section>
-    </div>
+    <Switch>
+      <Route path="/:user">
+        <div className="instructor">
+          <section className="instructor-top">
+            <Card>
+              <CardHeader>Welcome {user_name}</CardHeader>
+              <CardImg
+                top
+                width="80%"
+                src="https://i.pravatar.cc/300"
+                alt="Card image cap"
+              />
+              <CardBody>
+                <CardSubtitle>Role: {role}</CardSubtitle>
+                <CardText>Location: Los Angelos, CA</CardText>
+                <Button color="primary" onClick={routeToAddClass}>
+                  Add Class
+                </Button>
+              </CardBody>
+            </Card>
+          </section>
+          <section className="instructor-bottom">
+            <InstructorProfileClassList
+              classes={props.classes}
+              userName={props.user.user_name}
+              key={`user-${user_id}-classes`}
+            />
+          </section>
+        </div>
+      </Route>
+    </Switch>
   );
 };
 

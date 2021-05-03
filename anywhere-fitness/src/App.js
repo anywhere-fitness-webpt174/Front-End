@@ -38,15 +38,14 @@ function App(props) {
     <div>
       <Nav/>
       <Switch>
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={SignUp} />
-        <PrivateRoute path="/:user/addclass" component={AddClass} />
         <PrivateRoute
           path="/:user/editclass/:classid"
           component={InstructorEditClass}
         />
-        <PrivateRoute path="/class-list" />
+        <PrivateRoute path="/:user/addclass" component={AddClass} />
         <PrivateRoute exact path="/:user" component={UserProfile} />
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={SignUp} />
         <Route path="/" component={Login} />
       </Switch>
     </div>

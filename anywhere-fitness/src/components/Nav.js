@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -33,11 +33,13 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Nav(props) {
   const classes = useStyles();
-  const token = localStorage.getItem("token");
+  const [isToken, setToken] = useState(localStorage.getItem("token"));
   const history = useHistory();
+  
   const logOut = (e) => {
+
     localStorage.clear()
-    // history.push(`/`);
+    setToken(false)
   }
 
   return (
@@ -52,7 +54,7 @@ export default function Nav(props) {
             className={classes.toolbarTitle}
           ></Typography>
           <nav className="nav">
-            {token ? (
+            {isToken ? (
               <div>
                 <RouterLink style={{ textDecoration: "none" }} to="/" onClick={logOut}>
                   <Button
